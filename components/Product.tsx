@@ -1,15 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { ProductType } from "../types/types";
 
-type ProductProps = {
-  id: number;
-  colour: string;
-  img: string;
-  name: string;
-  price: number;
-};
 
-const Product: React.FC<ProductProps> = ({ id, colour, img, name, price }) => {
+const Product: React.FC<ProductType> = ({ id, color, img, name, price }) => {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{name}</Text>
