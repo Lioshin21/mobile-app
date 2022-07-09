@@ -1,32 +1,32 @@
 import React, { useEffect } from "react";
-import { Image, Text, View } from "react-native";
+import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../api/api";
+import { useSelector } from "react-redux";
 import Product from "../components/Product";
+import { getProducts } from "../store/reducers/productReducer";
 import { RootState } from "../store/store";
-import { ActionTypes, ProductType } from "../types/types";
+import { ProductsType } from "../types/product";
 
 const ProductList = () => {
   const products = useSelector(
     (state: RootState) => state.productsPage.products
   );
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProducts.then((res) =>
-      dispatch({ type: ActionTypes.GET_PRODUCTS, payload: res.data })
-    );
+
+    // Вызываю Thunk
+    getProducts();
+    console.log(products); // - Возвращает массив из undefined
   }, []);
 
   return (
     <View>
       <ScrollView>
-        {products.map((el: ProductType) => {
+        {products.map((el: ProductsType) => {
           return (
             <Product
               id={el.id}
-              color={el.color}
+              colour={el.colour}
               img={el.img}
               name={el.name}
               price={el.price}

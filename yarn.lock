@@ -2121,9 +2121,9 @@ anymatch@^3.0.3:
     picomatch "^2.0.4"
 
 appdirsjs@^1.2.4:
-  version "1.2.6"
-  resolved "https://registry.npmjs.org/appdirsjs/-/appdirsjs-1.2.6.tgz"
-  integrity sha512-D8wJNkqMCeQs3kLasatELsddox/Xqkhp+J07iXGyL54fVN7oc+nmNfYzGuCs1IEP6uBw+TfpuO3JKwc+lECy4w==
+  version "1.2.7"
+  resolved "https://registry.npmjs.org/appdirsjs/-/appdirsjs-1.2.7.tgz"
+  integrity sha512-Quji6+8kLBC3NnBeo14nPDq0+2jUs5s3/xEye+udFHumHhRk4M7aAMXp/PBJqkKYGuuyR9M/6Dq7d2AViiGmhw==
 
 application-config-path@^0.1.0:
   version "0.1.0"
@@ -5968,6 +5968,11 @@ recast@^0.20.4:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux-thunk@^2.4.1:
   version "2.4.1"

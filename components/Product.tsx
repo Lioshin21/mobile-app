@@ -1,15 +1,29 @@
+import { produceWithPatches } from "immer";
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import { ProductType } from "../types/types";
+import { useDispatch } from "react-redux";
+import { addProductAction } from "../store/reducers/basketReducer";
+import { BasketProductsActionTypes, BasketProductsType } from "../types/basket";
+import { ProductsType } from "../types/product";
 
+const Product: React.FC<ProductsType> = ({ id, colour, img, name, price }) => {
+  const dispatch = useDispatch();
 
-const Product: React.FC<ProductType> = ({ id, color, img, name, price }) => {
+  const addProductToBasket = (product: BasketProductsType) => {
+    dispatch(addProductAction(product));
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{name}</Text>
       <Image style={styles.image} source={{ uri: img }} />
       <Text style={styles.price}>Price: {price}$</Text>
-      <Button title="add to Basket" />
+      <Button
+        title="add to Basket"
+        onPress={() => {
+          addProductToBasket({ id, colour, img, name, price, count: 1 });
+        }}
+      />
     </View>
   );
 };

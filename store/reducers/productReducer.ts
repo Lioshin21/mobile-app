@@ -1,5 +1,11 @@
-import { GetProductsAction, ActionTypes } from "./../../types/types";
-import { ProductsState } from "../../types/types";
+import { getProductsAPI } from "./../../api/api";
+import { Dispatch } from "react";
+import {
+  ProductsActionTypes,
+  ProductsState,
+  GetProductsAction,
+  ProductsType,
+} from "./../../types/product";
 
 const initialState: ProductsState = {
   products: [],
@@ -10,17 +16,26 @@ export const productsReducer = (
   action: GetProductsAction
 ) => {
   switch (action.type) {
-    case ActionTypes.GET_PRODUCTS:
+    case ProductsActionTypes.GET_PRODUCTS:
       return {
-        products: [...action.payload]
+        products: [...action.payload],
       };
     default:
       return state;
   }
 };
 
-export const getProductsAction = (products: any[]) => {
-  return {
-    type: ActionTypes.GET_PRODUCTS, payload: products
-  }
-}
+const getProductsAC = (products: ProductsType[]) => ({
+  type: ProductsActionTypes.GET_PRODUCTS,
+  payload: products 
+})
+
+// Thunk, которая делает запрос на сервер
+// export const getProductsAPI = axios.get(baseUrl + "products"); - это адресс, на который сделан запрос
+
+export const getProducts = () => {
+  return (dispatch: Dispatch<GetProductsAction>) => {
+    getProductsAPI.then((response) => dispatch(getProductsAC(response.data))
+    );
+  };
+};

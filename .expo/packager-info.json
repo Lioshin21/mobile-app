@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://yh-4as.lioshin.mobile-app.exp.direct",
+  "packagerNgrokUrl": "https://yh-4as.lioshin.mobile-app.exp.direct",
+  "ngrokPid": 5044,
   "packagerPid": null,
-  "webpackServerPort": null
+  "webpackServerPort": 19006
 }
