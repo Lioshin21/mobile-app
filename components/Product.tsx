@@ -2,16 +2,12 @@ import { produceWithPatches } from "immer";
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
 import { useDispatch } from "react-redux";
-import { addProductAction } from "../store/reducers/basketReducer";
-import { BasketProductsActionTypes, BasketProductsType } from "../types/basket";
+import { moveToBasket } from "../store/slices/basketSlice";
+import {  BasketProductsType } from "../types/basket";
 import { ProductsType } from "../types/product";
 
 const Product: React.FC<ProductsType> = ({ id, colour, img, name, price }) => {
   const dispatch = useDispatch();
-
-  const addProductToBasket = (product: BasketProductsType) => {
-    dispatch(addProductAction(product));
-  };
 
   return (
     <View style={styles.card}>
@@ -21,7 +17,7 @@ const Product: React.FC<ProductsType> = ({ id, colour, img, name, price }) => {
       <Button
         title="add to Basket"
         onPress={() => {
-          addProductToBasket({ id, colour, img, name, price, count: 1 });
+          dispatch(moveToBasket({ id, colour, img, name, price, count: 1 }));
         }}
       />
     </View>
@@ -47,7 +43,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 20,
-  },
+  }
 });
 
 export default Product;

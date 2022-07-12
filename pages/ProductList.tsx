@@ -3,20 +3,16 @@ import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import Product from "../components/Product";
-import { getProducts } from "../store/reducers/productReducer";
 import { RootState } from "../store/store";
 import { ProductsType } from "../types/product";
+import { fetchProducts } from "../store/slices/productSlice";
 
 const ProductList = () => {
-  const products = useSelector(
-    (state: RootState) => state.productsPage.products
-  );
+  const products = useSelector((state: RootState) => state.products.products);
 
   useEffect(() => {
-
-    // Вызываю Thunk
-    getProducts();
-    console.log(products); // - Возвращает массив из undefined
+    fetchProducts();
+    console.log(products)
   }, []);
 
   return (

@@ -7,7 +7,7 @@ import { RootState } from "../store/store";
 import { BasketProductsType } from "../types/basket";
 
 const Basket = () => {
-  const products = useSelector((state: RootState) => state.basketPage.products);
+  const products = useSelector((state: RootState) => state.basket.products);
 
   return (
     <View>

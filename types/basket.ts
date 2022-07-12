@@ -1,4 +1,4 @@
-export enum BasketProductsActionTypes {
+export enum BasketActionTypes {
   ADD_PRODUCT = "ADD_PRODUCT",
   REMOVE_PRODUCT = "REMOVE_PRODUCT",
 }
@@ -17,12 +17,12 @@ export interface BasketState {
 }
 
 export interface AddProductAction {
-  type: BasketProductsActionTypes.ADD_PRODUCT;
+  // type: BasketActionTypes.ADD_PRODUCT;
   payload: BasketProductsType;
 }
 
 export interface RemoveProductAction {
-  type: BasketProductsActionTypes.REMOVE_PRODUCT;
+  type: BasketActionTypes.REMOVE_PRODUCT;
   payload: number;
 }
 
