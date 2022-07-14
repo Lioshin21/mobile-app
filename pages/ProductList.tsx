@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useSelector } from "react-redux";
 import Product from "../components/Product";
-import { RootState } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import { ProductsType } from "../types/product";
 import { fetchProducts } from "../store/slices/productSlice";
 
 const ProductList = () => {
-  const products = useSelector((state: RootState) => state.products.products);
+  const products = useAppSelector((state) => state.products.products);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchProducts();
-    console.log(products)
+    dispatch(fetchProducts());
   }, []);
 
   return (
