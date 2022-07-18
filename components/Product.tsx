@@ -1,13 +1,11 @@
-import { produceWithPatches } from "immer";
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import { useDispatch } from "react-redux";
 import { moveToBasket } from "../store/slices/basketSlice";
-import {  BasketProductsType } from "../types/basket";
+import { useAppDispatch } from "../store/store";
 import { ProductsType } from "../types/product";
 
 const Product: React.FC<ProductsType> = ({ id, colour, img, name, price }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <View style={styles.card}>

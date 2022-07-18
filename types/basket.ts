@@ -12,6 +12,11 @@ export interface BasketProductsType {
   count: number;
 }
 
+export interface IncreaseCountType {
+  id: number;
+  type: string;
+}
+
 export interface BasketState {
   products: BasketProductsType[];
 }
