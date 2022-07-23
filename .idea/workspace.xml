@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c7553d5-9a98-4ee9-85ae-2e45324d1366" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Basket.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Basket.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/ProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/slices/basketSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/slices/basketSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/basket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/basket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

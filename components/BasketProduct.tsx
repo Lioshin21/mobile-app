@@ -1,8 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
-import { changeCount, removeFromBasket } from "../store/slices/basketSlice";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  TextInput,
+  Alert,
+} from "react-native";
+import { setCount, removeFromBasket } from "../store/slices/basketSlice";
 import { useAppDispatch } from "../store/store";
 import { BasketProductsType } from "../types/basket";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const BasketProduct: React.FC<BasketProductsType> = ({
   id,
@@ -19,16 +28,6 @@ const BasketProduct: React.FC<BasketProductsType> = ({
       <Text style={styles.title}>{name}</Text>
       <Image style={styles.image} source={{ uri: img }} />
       <Text style={styles.price}>Price: {price}$</Text>
-      <View style={styles.countWrapper}>
-        <Text>Total count: </Text>
-        <View style={styles.countButton}>
-          <Button title="-"  onPress={() => dispatch(changeCount({id, type: 'decrease'}))}/>
-        </View>
-        <Text>{count}</Text>
-        <View style={styles.countButton}>
-          <Button title="+" onPress={() => dispatch(changeCount({id, type: 'increase'}))}/>
-        </View>
-      </View>
       <Text style={styles.price}>Total price: {price * count}$</Text>
       <Button
         title="Remove from basket"
@@ -36,6 +35,30 @@ const BasketProduct: React.FC<BasketProductsType> = ({
           dispatch(removeFromBasket(id));
         }}
       />
+      <View style={styles.countWrapper}>
+        <Text>Total count: </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => {
+            Number(value) > 1000 || Number(value) < 0
+              ? Alert.alert("Enter number between 1 and 1000")
+              : dispatch(setCount({ id, count: Number(value) }));
+          }}
+          value={`${count}`}
+          keyboardType="numeric"
+        />
+      </View>
+      <View style={styles.sliderContainer}>
+        <Slider
+          minimumValue={1}
+          maximumValue={1000}
+          onValueChange={(value) =>
+            dispatch(setCount({ id, count: Number(value) }))
+          }
+          value={count}
+          step={1}
+        />
+      </View>
     </View>
   );
 };
@@ -62,11 +85,24 @@ const styles = StyleSheet.create({
   },
   countWrapper: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  countButton: {
-    width: 10,
-    height: 10,
+  sliderContainer: {
+    flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems: "stretch",
+    justifyContent: "center",
+    width: "100%",
+  },
+  input: {
+    width: 50,
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 

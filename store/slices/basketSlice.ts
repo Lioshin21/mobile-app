@@ -1,4 +1,4 @@
-import { IncreaseCountType } from "./../../types/basket";
+import { SetCount } from "./../../types/basket";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BasketState, BasketProductsType } from "../../types/basket";
 import { Alert } from "react-native";
@@ -17,21 +17,16 @@ const basketSlice = createSlice({
     removeFromBasket(state, action: PayloadAction<number>) {
       state.products = state.products.filter((el) => el.id !== action.payload);
     },
-    changeCount(state, action: PayloadAction<IncreaseCountType>) {
-      action.payload.type === "increase"
-        ? (state.products = state.products.map((el) =>
-            el.id === action.payload.id ? { ...el, count: el.count + 1 } : el
-          ))
-        : (state.products = state.products.map((el) =>
-            el.id === action.payload.id && el.count >= 2
-              ? { ...el, count: el.count - 1 }
-              : el
-          ));
+    setCount(state, action: PayloadAction<SetCount>) {
+      state.products = state.products.map((el) =>
+        el.id === action.payload.id
+          ? { ...el, count: action.payload.count,  }
+          : el
+      );
     },
   },
 });
 
-export const { moveToBasket, removeFromBasket, changeCount } =
-  basketSlice.actions;
+export const { moveToBasket, removeFromBasket, setCount } = basketSlice.actions;
 
 export default basketSlice.reducer;

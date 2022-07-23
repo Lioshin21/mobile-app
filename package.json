@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
+    "@miblanchard/react-native-slider": "^2.1.0",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.2",

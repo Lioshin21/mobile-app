@@ -1,8 +1,3 @@
-export enum BasketActionTypes {
-  ADD_PRODUCT = "ADD_PRODUCT",
-  REMOVE_PRODUCT = "REMOVE_PRODUCT",
-}
-
 export interface BasketProductsType {
   id: number;
   colour: string;
@@ -12,23 +7,11 @@ export interface BasketProductsType {
   count: number;
 }
 
-export interface IncreaseCountType {
+export interface SetCount {
   id: number;
-  type: string;
+  count: number;
 }
 
 export interface BasketState {
   products: BasketProductsType[];
 }
-
-export interface AddProductAction {
-  // type: BasketActionTypes.ADD_PRODUCT;
-  payload: BasketProductsType;
-}
-
-export interface RemoveProductAction {
-  type: BasketActionTypes.REMOVE_PRODUCT;
-  payload: number;
-}
-
-export type BasketAction = AddProductAction | RemoveProductAction;
