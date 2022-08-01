@@ -23,12 +23,52 @@ const BasketProduct: React.FC<BasketProductsType> = ({
 }) => {
   const dispatch = useAppDispatch();
 
+  const changeCount = (value: string) => {
+    const changeDot = /,/g;
+    let newstr = value.replace(changeDot, ".");
+
+    if (newstr.includes(".") && newstr.indexOf(".") < newstr.length - 2) {
+      const arrFromString = Array.from(newstr);
+      arrFromString.pop();
+      newstr = arrFromString.join("");
+      changeStep(0.1)
+    }
+
+    if (isNaN(Number(newstr))) {
+      Alert.alert("Enter a number for example (1 or 1.1)");
+      return dispatch(setCount({ id, count: "1" }));
+    }
+
+    if (Number(newstr) > 3600 || Number(newstr) < 0) {
+      Alert.alert("Enter a number between 1 and 3600");
+      return dispatch(setCount({ id, count: "1" }));
+    }
+
+    return dispatch(setCount({ id, count: newstr }));
+  };
+
+  const changeStep = (step: number = 1) => {
+    const currentValue = Number(count);
+
+    if (step === 0.1) {
+      return step;
+    }
+
+    return currentValue < 100
+      ? (step = 1)
+      : currentValue < 1000
+      ? (step = 10)
+      : (step = 100);
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{name}</Text>
       <Image style={styles.image} source={{ uri: img }} />
       <Text style={styles.price}>Price: {price}$</Text>
-      <Text style={styles.price}>Total price: {price * count}$</Text>
+      <Text style={styles.price}>
+        Total price: {(price * Number(count)).toFixed(2)}$
+      </Text>
       <Button
         title="Remove from basket"
         onPress={() => {
@@ -39,11 +79,7 @@ const BasketProduct: React.FC<BasketProductsType> = ({
         <Text>Total count: </Text>
         <TextInput
           style={styles.input}
-          onChangeText={(value) => {
-            Number(value) > 1000 || Number(value) < 0
-              ? Alert.alert("Enter number between 1 and 1000")
-              : dispatch(setCount({ id, count: Number(value) }));
-          }}
+          onChangeText={(value) => changeCount(value)}
           value={`${count}`}
           keyboardType="numeric"
         />
@@ -51,12 +87,14 @@ const BasketProduct: React.FC<BasketProductsType> = ({
       <View style={styles.sliderContainer}>
         <Slider
           minimumValue={1}
-          maximumValue={1000}
+          maximumValue={3600}
           onValueChange={(value) =>
-            dispatch(setCount({ id, count: Number(value) }))
+            dispatch(
+              setCount({ id, count: value.toString() })
+            )
           }
-          value={count}
-          step={1}
+          value={Number(count)}
+          step={changeStep()}
         />
       </View>
     </View>
@@ -98,7 +136,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   input: {
-    width: 50,
+    width: 100,
     height: 40,
     margin: 12,
     borderWidth: 1,

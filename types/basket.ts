@@ -4,12 +4,12 @@ export interface BasketProductsType {
   img: string;
   name: string;
   price: number;
-  count: number;
+  count: string;
 }
 
 export interface SetCount {
   id: number;
-  count: number;
+  count: string;
 }
 
 export interface BasketState {
